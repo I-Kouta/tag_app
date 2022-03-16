@@ -12,4 +12,8 @@ class PostForm
   def save
     Post.create(text: text, image: image)
   end
+
+  def update(params, post)
+    post.update(params)
+  end
 end
