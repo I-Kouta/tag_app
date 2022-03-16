@@ -14,7 +14,10 @@ class PostForm
   end
 
   def save
-    Post.create(text: text, image: image)
+    post = Post.create(text: text, image: image) # 保存したレコードを変数postに代入
+    tag = Tag.where(tag_name: tag_name).first_or_initialize # tagが重複して保存されることを防ぐ
+    tag.save
+    PostTagRelation.create(post_id: post.id, tag_id: tag.id)
   end
 
   def update(params, post)
