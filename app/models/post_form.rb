@@ -4,7 +4,8 @@ class PostForm
   # PostFormクラスのオブジェクトがPostモデルの属性を扱えるようにする
   attr_accessor(
     :text, :image,
-    :id, :created_at, :datetime, :updated_at, :datetime
+    :id, :created_at, :datetime, :updated_at, :datetime,
+    :tag_name
   )
 
   with_options presence: true do
