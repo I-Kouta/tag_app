@@ -9,6 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
+        const tagName = XHR.response.keyword;
+        const searchResult = document.getElementById("search-result");
+        tagName.forEach((tag) => {
+          const childElement = document.createElement("div");
+          childElement.setAttribute("class", "child");
+          childElement.setAttribute("id", tag.id);
+          childElement.innerHTML = tag.tag_name;
+          searchResult.appendChild(childElement);
+        });
       };
     });
   };
