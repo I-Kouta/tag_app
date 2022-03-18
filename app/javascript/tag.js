@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const tagName = XHR.response.keyword;
         // タグを表示させる場所の取得
         const searchResult = document.getElementById("search-result");
+        searchResult.innerHTML = "";
         // 検索結果があるだけ繰り返す
         tagName.forEach((tag) => {
           // タグ名を格納するための要素を作成
