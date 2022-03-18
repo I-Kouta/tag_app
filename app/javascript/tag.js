@@ -9,26 +9,28 @@ document.addEventListener("DOMContentLoaded", () => {
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
-        const tagName = XHR.response.keyword;
         // タグを表示させる場所の取得
         const searchResult = document.getElementById("search-result");
         searchResult.innerHTML = "";
-        // 検索結果があるだけ繰り返す
-        tagName.forEach((tag) => {
-          // タグ名を格納するための要素を作成
-          const childElement = document.createElement("div");
-          // 生成した要素にclassとidを指定
-          childElement.setAttribute("class", "child");
-          childElement.setAttribute("id", tag.id);
-          // 生成した要素の内容に検索結果のタグ名を指定
-          childElement.innerHTML = tag.tag_name;
-          searchResult.appendChild(childElement);
-          const clickElement = document.getElementById(tag.id);
-          clickElement.addEventListener("click", () => {
-            document.getElementById("post_form_tag_name").value = clickElement.textContent;
-            clickElement.remove();
+        if (XHR.response) {
+          const tagName = XHR.response.keyword;
+          // 検索結果があるだけ繰り返す
+          tagName.forEach((tag) => {
+            // タグ名を格納するための要素を作成
+            const childElement = document.createElement("div");
+            // 生成した要素にclassとidを指定
+            childElement.setAttribute("class", "child");
+            childElement.setAttribute("id", tag.id);
+            // 生成した要素の内容に検索結果のタグ名を指定
+            childElement.innerHTML = tag.tag_name;
+            searchResult.appendChild(childElement);
+            const clickElement = document.getElementById(tag.id);
+            clickElement.addEventListener("click", () => {
+              document.getElementById("post_form_tag_name").value = clickElement.textContent;
+              clickElement.remove();
+            });
           });
-        });
+        };
       };
     });
   };
